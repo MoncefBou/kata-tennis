@@ -1,33 +1,53 @@
 
-const translateScore = (score: Number, playerName: String): String => {
+const translateScore = (score: Number): String | Boolean => {
     switch (score) {
         case 0:
-            return "Love"
+            return "Love";
         case 1:
-            return "15"
+            return "15";
         case 2:
-            return "30"
+            return "30";
         case 3:
-            return "40"
+            return "40";
         case 4:
-            return "Advantage"
+            return "Advantage";
         default:
-            return `Error with the score of ${playerName}`
-    }
-}
+            return false;
+    };
+};
 
-export const scoreToDisplay = (scorePlayerA: Number, scorePlayerB: Number): String => {
+const hasWinner = (scorePlayerA: number, scorePlayerB: number): String | Boolean => {
+    const scorePlayerAWinner = ['4-0', '4-1', '4-2', '5-3'];
+    if (scorePlayerAWinner.includes(`${scorePlayerA}-${scorePlayerB}`)) {
+        return 'Player A WIN';
+    };
+
+    const scorePlayerBWinner = ['0-4', '1-4', '2-4', '3-5'];
+    if (scorePlayerBWinner.includes(`${scorePlayerA}-${scorePlayerB}`)) {
+        return 'Player B WIN';
+    };
+
+    return false;
+};
+
+export const scoreToDisplay = (scorePlayerA: number, scorePlayerB: number): String => {
     if (scorePlayerA === 3 && scorePlayerB === 3) {
-        return 'Deuce'
-    }
+        return 'Deuce';
+    };
 
-    if (scorePlayerA === 4 && scorePlayerB === 0) {
-        return 'Player A WIN'
-    }
+    const result = hasWinner(scorePlayerA, scorePlayerB);
+    if (typeof result === "string") {
+        return result;
+    };
 
-    const scoreToDisplayPlayerA: String = translateScore(scorePlayerA, 'Player A')
-    const scoreToDisplayPlayerB: String = translateScore(scorePlayerB, 'Player B')
+    const scoreToDisplayPlayerA: String | Boolean = translateScore(scorePlayerA);
+    if (!scoreToDisplayPlayerA) {
+        return 'Error with the score of Player A';
+    };
+    const scoreToDisplayPlayerB: String | Boolean = translateScore(scorePlayerB);
+    if (!scoreToDisplayPlayerB) {
+        return 'Error with the score of Player B';
+    };
 
-    return `${scoreToDisplayPlayerA}-${scoreToDisplayPlayerB}`
-}
-
+    return `${scoreToDisplayPlayerA}-${scoreToDisplayPlayerB}`;
+};
