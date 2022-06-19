@@ -13,5 +13,14 @@ describe("Tennis", () => {
             const result = scoreToDisplay(scorePlayerA, scorePlayerB)
             expect(result).toBe(expected)
         })
+    });
+
+    describe('Player A is the winner', () => {
+        test("Should display Player A WIN if player A scores 4 points and player B doesn't scores", () => {
+            const scorePlayerA = 4
+            const scorePlayerB = 0
+            const result = scoreToDisplay(scorePlayerA, scorePlayerB)
+            expect(result).toBe('Player A WIN')
+        })
     })
-})
+});
