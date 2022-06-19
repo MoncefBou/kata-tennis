@@ -21,6 +21,10 @@ export const scoreToDisplay = (scorePlayerA: Number, scorePlayerB: Number): Stri
         return 'Deuce'
     }
 
+    if (scorePlayerA === 4 && scorePlayerB === 0) {
+        return 'Player A WIN'
+    }
+
     const scoreToDisplayPlayerA: String = translateScore(scorePlayerA, 'Player A')
     const scoreToDisplayPlayerB: String = translateScore(scorePlayerB, 'Player B')
 

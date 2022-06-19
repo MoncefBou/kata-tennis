@@ -21,6 +21,9 @@ const scoreToDisplay = (scorePlayerA, scorePlayerB) => {
     if (scorePlayerA === 3 && scorePlayerB === 3) {
         return 'Deuce';
     }
+    if (scorePlayerA === 4 && scorePlayerB === 0) {
+        return 'Player A WIN';
+    }
     const scoreToDisplayPlayerA = translateScore(scorePlayerA, 'Player A');
     const scoreToDisplayPlayerB = translateScore(scorePlayerB, 'Player B');
     return `${scoreToDisplayPlayerA}-${scoreToDisplayPlayerB}`;
