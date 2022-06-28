@@ -1,52 +1,47 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.scoreToDisplay = void 0;
-const translateScore = (score) => {
-    switch (score) {
-        case 0:
-            return "Love";
-        case 1:
-            return "15";
-        case 2:
-            return "30";
-        case 3:
-            return "40";
-        case 4:
-            return "Advantage";
-        default:
-            return false;
-    }
-    ;
+const scoreIndex = [
+    "Love",
+    "15",
+    "30",
+    "40",
+    "Advantage"
+];
+
+const translateScoreByIndex = (score) => {
+    var _a;
+    return (_a = scoreIndex[score]) !== null && _a !== void 0 ? _a : false;
 };
-const hasWinner = (scorePlayerA, scorePlayerB) => {
-    const scorePlayerAWinner = ['4-0', '4-1', '4-2', '5-3'];
-    if (scorePlayerAWinner.includes(`${scorePlayerA}-${scorePlayerB}`)) {
-        return 'Player A WIN';
-    }
-    ;
-    const scorePlayerBWinner = ['0-4', '1-4', '2-4', '3-5'];
-    if (scorePlayerBWinner.includes(`${scorePlayerA}-${scorePlayerB}`)) {
-        return 'Player B WIN';
-    }
-    ;
-    return false;
+
+const hasWinnerCheck = (scorePlayerA, scorePlayerB) => {
+    const scorePlayersWinner = ['4-0', '4-1', '4-2', '5-3', '0-4', '1-4', '2-4', '3-5'];
+    const stringScore = `${scorePlayerA}-${scorePlayerB}`;
+    return scorePlayersWinner.indexOf(stringScore);
+
 };
+
 const scoreToDisplay = (scorePlayerA, scorePlayerB) => {
     if (scorePlayerA === 3 && scorePlayerB === 3) {
         return 'Deuce';
     }
     ;
-    const result = hasWinner(scorePlayerA, scorePlayerB);
-    if (typeof result === "string") {
-        return result;
+    const result = hasWinnerCheck(scorePlayerA, scorePlayerB);
+    if ([0, 1, 2, 3].includes(result)) {
+        return 'Player A WIN';
     }
-    ;
-    const scoreToDisplayPlayerA = translateScore(scorePlayerA);
+    else if ([4, 5, 6, 7].includes(result)) {
+        return 'Player B WIN';
+    }
+    
+    const scoreToDisplayPlayerA = translateScoreByIndex(scorePlayerA);
     if (!scoreToDisplayPlayerA) {
         return 'Error with the score of Player A';
     }
     ;
-    const scoreToDisplayPlayerB = translateScore(scorePlayerB);
+    
+    const scoreToDisplayPlayerB = translateScoreByIndex(scorePlayerB);
+
     if (!scoreToDisplayPlayerB) {
         return 'Error with the score of Player B';
     }
