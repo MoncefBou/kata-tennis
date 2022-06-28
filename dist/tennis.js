@@ -8,26 +8,19 @@ const scoreIndex = [
     "40",
     "Advantage"
 ];
+
 const translateScoreByIndex = (score) => {
     var _a;
     return (_a = scoreIndex[score]) !== null && _a !== void 0 ? _a : false;
 };
+
 const hasWinnerCheck = (scorePlayerA, scorePlayerB) => {
     const scorePlayersWinner = ['4-0', '4-1', '4-2', '5-3', '0-4', '1-4', '2-4', '3-5'];
     const stringScore = `${scorePlayerA}-${scorePlayerB}`;
     return scorePlayersWinner.indexOf(stringScore);
+
 };
-// const hasWinner = (scorePlayerA: number, scorePlayerB: number): String | Boolean => {
-//     const scorePlayerAWinner = ['4-0', '4-1', '4-2', '5-3'];
-//     if (scorePlayerAWinner.includes(`${scorePlayerA}-${scorePlayerB}`)) {
-//         return 'Player A WIN';
-//     };
-//     const scorePlayerBWinner = ['0-4', '1-4', '2-4', '3-5'];
-//     if (scorePlayerBWinner.includes(`${scorePlayerA}-${scorePlayerB}`)) {
-//         return 'Player B WIN';
-//     };
-//     return false;
-// };
+
 const scoreToDisplay = (scorePlayerA, scorePlayerB) => {
     if (scorePlayerA === 3 && scorePlayerB === 3) {
         return 'Deuce';
@@ -40,12 +33,15 @@ const scoreToDisplay = (scorePlayerA, scorePlayerB) => {
     else if ([4, 5, 6, 7].includes(result)) {
         return 'Player B WIN';
     }
+    
     const scoreToDisplayPlayerA = translateScoreByIndex(scorePlayerA);
     if (!scoreToDisplayPlayerA) {
         return 'Error with the score of Player A';
     }
     ;
+    
     const scoreToDisplayPlayerB = translateScoreByIndex(scorePlayerB);
+
     if (!scoreToDisplayPlayerB) {
         return 'Error with the score of Player B';
     }

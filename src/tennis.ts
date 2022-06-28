@@ -16,20 +16,6 @@ const hasWinnerCheck = (scorePlayerA: number, scorePlayerB: number): number => {
     return scorePlayersWinner.indexOf(stringScore);
 }
 
-// const hasWinner = (scorePlayerA: number, scorePlayerB: number): String | Boolean => {
-//     const scorePlayerAWinner = ['4-0', '4-1', '4-2', '5-3'];
-//     if (scorePlayerAWinner.includes(`${scorePlayerA}-${scorePlayerB}`)) {
-//         return 'Player A WIN';
-//     };
-
-//     const scorePlayerBWinner = ['0-4', '1-4', '2-4', '3-5'];
-//     if (scorePlayerBWinner.includes(`${scorePlayerA}-${scorePlayerB}`)) {
-//         return 'Player B WIN';
-//     };
-
-//     return false;
-// };
-
 export const scoreToDisplay = (scorePlayerA: number, scorePlayerB: number): String => {
     if (scorePlayerA === 3 && scorePlayerB === 3) {
         return 'Deuce';
@@ -47,6 +33,7 @@ export const scoreToDisplay = (scorePlayerA: number, scorePlayerB: number): Stri
         return 'Error with the score of Player A';
     };
     const scoreToDisplayPlayerB: String | Boolean = translateScoreByIndex(scorePlayerB);
+
     if (!scoreToDisplayPlayerB) {
         return 'Error with the score of Player B';
     };
